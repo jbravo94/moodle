@@ -153,7 +153,9 @@ if (isset($state)) {
     $params['state'] = $state;
 }
 unset($SESSION->lti_message_hint);
-$r = '<form action="' . $redirecturi . "\" name=\"ltiAuthForm\" id=\"ltiAuthForm\" " .
+
+$sanitized_redirecturi = preg_replace('/javascript\:/i', '', $redirecturi);
+$r = '<form action="' . $sanitized_redirecturi . "\" name=\"ltiAuthForm\" id=\"ltiAuthForm\" " .
      "method=\"post\" enctype=\"application/x-www-form-urlencoded\">\n";
 if (!empty($params)) {
     foreach ($params as $key => $value) {
